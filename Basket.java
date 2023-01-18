@@ -2,12 +2,14 @@ public class Basket {
     public static int countBasket;
     public static int totalPrice;
     private String items = "";
+    public static int totalCount;
     private static int count;
+
     private int limit;
 
     public Basket() {
         countBasket = countBasket + 1;
-        increaseCount(1);
+        //increaseCount(1);
         items = "Список товаров:";
         this.limit = 1000000;
     }
@@ -30,9 +32,11 @@ public class Basket {
         return (double) totalPrice/countBasket;
     }
 
-
     public static void increaseCount(int count) {
-        Basket.count = Basket.count + count;
+        totalCount = totalCount + count;
+    }
+    public static double getTotalCost() {
+        return totalPrice/totalCount;
     }
 
     public void add(String name, int price) {
@@ -57,6 +61,7 @@ public class Basket {
         items = items + "\n" + name + " - " +
             count + " шт. - " + price;
         totalPrice = totalPrice + count * price;
+        totalCount = totalCount + count;
     }
 
     public void clear() {
